@@ -1,0 +1,74 @@
+﻿@model List<TarjetaCredito>
+
+@{
+    ViewData["Title"] = "Transacciones";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div style="padding-top:2%; padding-bottom:2%">
+    <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between" style="width: 45%">
+            <p class="w-50" style="font-weight:bold">
+                Nombre del Cliente:
+            </p>
+            <p class="w-50">
+                @Model[0].Nombres @Model[0].Apellidos
+            </p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between" style="width: 45%">
+            <p class="w-50" style="font-weight:bold">
+                Nombre de Tarjeta de Crédito:
+            </p>
+            <p class="w-50">
+                @Model[0].NumeroTarjetaMask
+            </p>
+        </div>
+    </div>
+</div>
+
+<table class="table" style="border:1px solid black">
+    <thead>
+        <tr>
+            <th style="border:1px solid black; width: 20%">
+                @Html.DisplayNameFor(model => model[0].Transacciones[0].NumeroAutorizacion)
+            </th>
+            <th style="border:1px solid black; width: 20%">
+                @Html.DisplayNameFor(model => model[0].Transacciones[0].Fecha)
+            </th>
+            <th style="border:1px solid black; width: 30%">
+                @Html.DisplayNameFor(model => model[0].Transacciones[0].Descripcion)
+            </th>
+            <th style="border:1px solid black; width: 15%">
+                Cargo
+            </th>
+            <th style="border:1px solid black; width: 15%">
+                Abono
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model[0].Transacciones)
+        {
+            <tr>
+                <td style="border:1px solid black; width: 20%">
+                    @Html.DisplayFor(modelItem => item.NumeroAutorizacion)
+                </td>
+                <td style="border:1px solid black; width: 20%">
+                    @Html.DisplayFor(modelItem => item.FechaText)
+                </td>
+                <td style="border:1px solid black; width: 30%">
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td style="border:1px solid black; width: 15%; text-align:end">
+                    @Html.DisplayFor(modelItem => item.MontoCargo)
+                </td>
+                <td style="border:1px solid black; width: 15%; text-align:end">
+                    @Html.DisplayFor(modelItem => item.MontoAbono)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

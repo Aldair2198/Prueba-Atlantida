@@ -1,0 +1,141 @@
+﻿@model PaginatedList<TarjetaCredito>
+
+@{
+    ViewData["Title"] = "Listado de Tarjetas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="d-flex justify-content-between align-self-center">
+    <p class="p-2">
+        Mostrar
+        @* <label>@ViewData["PageSize"]</label> *@
+        @Html.DropDownList("Index", new SelectListItem[] {
+            new SelectListItem() { Text = "3", Value = "3", Selected = ViewData["PageSize"].ToString() == "3" },
+            new SelectListItem() { Text = "5", Value = "5", Selected = ViewData["PageSize"].ToString() == "5" },
+            new SelectListItem() { Text = "10", Value = "10", Selected = ViewData["PageSize"].ToString() == "10" },
+            new SelectListItem() { Text = "50", Value = "50", Selected = ViewData["PageSize"].ToString() == "50" }
+        }, new { onChange = "document.location.href = '/?pageSize=' + this.options[this.selectedIndex].value;" })
+        resultados
+    </p>
+    <form asp-action="Index" method="get" class="p-2">
+        <div class="form-action no-color">
+            <p>
+                Find by name: <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-success" />
+                <input type="button" class="btn btn-danger" value="X" onclick="location.href='@Url.Action("Index", new { pageSize = ViewData["PageSize"] } )'" />
+            </p>
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width: 15%">
+                <a style="color:black" asp-action="Index"
+                   asp-route-PageSize="@ViewData["PageSize"]"
+                   asp-route-CurrentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-sortOrder="@ViewData["NumTarjetaSort"]">
+                    @Html.DisplayNameFor(model => model.First().NumeroTarjeta)
+                </a>
+            </th>
+            <th style="width: 15%">
+                <a style="color:black" asp-action="Index"
+                   asp-route-PageSize="@ViewData["PageSize"]"
+                   asp-route-CurrentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-sortOrder="@ViewData["NombreSort"]">
+                    @Html.DisplayNameFor(model => model.First().Nombres)
+                </a>
+            </th>
+            <th style="width: 15%">
+                <a style="color:black" asp-action="Index"
+                   asp-route-PageSize="@ViewData["PageSize"]"
+                   asp-route-CurrentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-sortOrder="@ViewData["ApellidoSort"]">
+                    @Html.DisplayNameFor(model => model.First().Apellidos)
+                </a>
+            </th>
+            <th style="width: 55%">
+                <u>Opciones</u>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="width: 15%">
+                    @Html.DisplayFor(modelItem => item.NumeroTarjetaMask)
+                </td>
+                <td style="width: 15%">
+                    @Html.DisplayFor(modelItem => item.Nombres)
+                </td>
+                <td style="width: 15%">
+                    @Html.DisplayFor(modelItem => item.Apellidos)
+                </td>
+                <td class="justify-content-end" style="width: 55%">
+                    <input type="button"
+                        class="btn btn-primary"
+                        value="Estado de Cuenta"
+                        onclick="location.href='@Url.Action("EstadoCuenta", new { id = item.Id })'" />
+                    <input type="button"
+                        class="btn btn-success"
+                        value="Registrar Compra"
+                        onclick="location.href='@Url.Action("RegistraCompra", new { id = item.Id })'" />
+                    <input type="button"
+                        class="btn btn-info"
+                        value="Registrar Pago"
+                        onclick="location.href='@Url.Action("RegistraPago", new { id = item.Id })'" />
+                    <input type="button"
+                        class="btn btn-secondary"
+                        value="Transacciones"
+                        onclick="location.href='@Url.Action("Transacciones", new { id = item.Id })'" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    var totalPages = Model.TotalPages;
+}
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a asp-action="Index"
+               asp-route-PageSize="@ViewData["PageSize"]"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               asp-route-pageNumber="@(Model.PageIndex-1)"
+               class="btn btn-outline-primary @prevDisabled">
+                Anterior
+            </a>
+        </li>
+        @for (int i = 0; i < totalPages; i++)
+        {
+            <li class="page-item">
+                <a asp-action="Index"
+                   asp-route-PageSize="@ViewData["PageSize"]"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-pageNumber="@(i+1)"
+                   class="btn btn-outline-primary">
+                    @(i + 1)
+                </a>
+            </li>
+        }
+        <li class="page-item">
+            <a asp-action="Index"
+               asp-route-PageSize="@ViewData["PageSize"]"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               asp-route-pageNumber="@(Model.PageIndex+1)"
+               class="btn btn-outline-primary @nextDisabled">
+                Siguiente
+            </a>
+        </li>
+    </ul>
+</nav>

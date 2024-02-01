@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "91dc8b3b-2d97-4fc9-ac36-2cd5a5dfc9ce",
+		"name": "Prueba tecnica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32674214",
+		"_collection_link": "https://www.postman.com/maintenance-architect-33732164/workspace/prueba-banco-atlantida/collection/32674214-91dc8b3b-2d97-4fc9-ac36-2cd5a5dfc9ce?action=share&source=collection_link&creator=32674214"
+	},
+	"item": [
+		{
+			"name": "API Tarjetas de Credito",
+			"item": [
+				{
+					"name": "Tarjetas de credito",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44348/api/TarjetaCredito/GetTarjetasCredito",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44348",
+							"path": [
+								"api",
+								"TarjetaCredito",
+								"GetTarjetasCredito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tarjeta de credito",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44348/api/TarjetaCredito/GetTarjetaCredito?id=6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44348",
+							"path": [
+								"api",
+								"TarjetaCredito",
+								"GetTarjetaCredito"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transacciones",
+			"item": [
+				{
+					"name": "Insert Transacciones",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\":5,\r\n    \"NumeroTarjeta\":\"1234567812345675\",\r\n    \"NumeroTarjetaMask\":null,\r\n    \"Nombres\":null,\r\n    \"Apellidos\":null,\r\n    \"NombreCompleto\":null,\r\n    \"SaldoActual\":0.0,\r\n    \"InteresBonificable\":0.0,\r\n    \"SaldoDisponible\":0.0,\r\n    \"ComprasActual\":0.0,\r\n    \"ComprasPrevio\":0.0,\r\n    \"Limite\":0.0,\r\n    \"PorcInteres\":0.0,\r\n    \"Estado\":null,\r\n    \"Transacciones\":[\r\n        {\r\n            \"Id\":0, \r\n            \"NumeroAutorizacion\":null,\r\n            \"NumeroTarjeta\":null,\r\n            \"Fecha\":\"2024-01-31T12:00:30\",\r\n            \"FechaText\":null,\r\n            \"Descripcion\":\"Prestamo casa\",\r\n            \"Monto\":5100.0,\r\n            \"MontoAbono\":null,\r\n            \"MontoCargo\":null,\r\n            \"MontoText\":null,\r\n            \"Estado\":null,\r\n            \"AbonoCargo\":\"C\"\r\n            }\r\n            ],\r\n            \"NombreMesAct\":null,\r\n            \"NombreMesPrev\":null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44348/api/Transacciones/InsertTransaccion",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44348",
+							"path": [
+								"api",
+								"Transacciones",
+								"InsertTransaccion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

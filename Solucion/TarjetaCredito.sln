@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarjetaCreditoWebApi", "TarjetaCreditoWebApi\TarjetaCreditoWebApi.csproj", "{DADA8C73-E85B-4500-9B05-49DFACF77BD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarjetaCreditoWebApp", "TarjetaCreditoWebApp\TarjetaCreditoWebApp.csproj", "{C44CC8B5-F48E-4892-8A45-42242F61D42E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DADA8C73-E85B-4500-9B05-49DFACF77BD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DADA8C73-E85B-4500-9B05-49DFACF77BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DADA8C73-E85B-4500-9B05-49DFACF77BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DADA8C73-E85B-4500-9B05-49DFACF77BD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C44CC8B5-F48E-4892-8A45-42242F61D42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44CC8B5-F48E-4892-8A45-42242F61D42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44CC8B5-F48E-4892-8A45-42242F61D42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44CC8B5-F48E-4892-8A45-42242F61D42E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B828DDF7-E550-45CA-9A26-486407A70A56}
+	EndGlobalSection
+EndGlobal
